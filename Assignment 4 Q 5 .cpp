@@ -319,71 +319,71 @@ vector<int> reversed_vector(size_t size) {
 int main() {
 
 	cout << "Ascending vectors : " << endl;
-	vector<int> v1 = sorted_vector(1000);
+	vector<int> v1 = sorted_vector(10000);
 	bubble_sort_improved(v1);
 
-	v1 = sorted_vector(1000);
+	v1 = sorted_vector(10000);
 	selection_sort(v1);
 
-	v1 = sorted_vector(1000);
+	v1 = sorted_vector(10000);
 	insertion_sort(v1);
 
-	v1 = sorted_vector(1000);
+	v1 = sorted_vector(10000);
 	ShellSort(v1);
 
-	v1 = sorted_vector(1000);
+	v1 = sorted_vector(10000);
 	mergeSort(v1);
 
-	v1 = sorted_vector(1000);
+	v1 = sorted_vector(10000);
 	quick_sort_wrapper(v1);
 
-	v1 = sorted_vector(1000);
+	v1 = sorted_vector(10000);
 	middle_quick_sort_wrapper(v1);
 
 	cout << "Decending vectors : " << endl;
 
-	v1 = reversed_vector(1000);
+	v1 = reversed_vector(10000);
 	bubble_sort_improved(v1);
 
-	v1 = reversed_vector(1000);
+	v1 = reversed_vector(10000);
 	selection_sort(v1);
 
-	v1 = reversed_vector(1000);
+	v1 = reversed_vector(10000);
 	insertion_sort(v1);
 
-	v1 = reversed_vector(1000);
+	v1 = reversed_vector(10000);
 	ShellSort(v1);
 
-	v1 = reversed_vector(1000);
+	v1 = reversed_vector(10000);
 	mergeSort(v1);
 
-	v1 = reversed_vector(1000);
+	v1 = reversed_vector(10000);
 	quick_sort_wrapper(v1);
 
-	v1 = reversed_vector(1000);
+	v1 = reversed_vector(10000);
 	middle_quick_sort_wrapper(v1);
 	
 	cout << "Random vectors : " << endl;
 
-	v1 = random_vector(1000);
+	v1 = random_vector(10000);
 	bubble_sort_improved(v1);
 
-	v1 = random_vector(1000);
+	v1 = random_vector(10000);
 	selection_sort(v1);
 
-	v1 = random_vector(1000);
+	v1 = random_vector(10000);
 	insertion_sort(v1);
 
-	v1 = random_vector(1000);
+	v1 = random_vector(10000);
 	ShellSort(v1);
 
-	v1 = random_vector(1000);
+	v1 = random_vector(10000);
 	mergeSort(v1);
 
-	v1 = random_vector(1000);
+	v1 = random_vector(10000);
 	quick_sort_wrapper(v1);
 
-	v1 = random_vector(1000);
+	v1 = random_vector(10000);
 	middle_quick_sort_wrapper(v1);
 
 	return 0;
