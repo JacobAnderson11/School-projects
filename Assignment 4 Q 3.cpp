@@ -5,7 +5,7 @@
 
 using namespace std;
 
-int linear_search(vector<int> input, int target, int pos_first);
+int linear_search(vector<int> input, int target, int pos_last);
 
 int main()
 {
