@@ -1,89 +1,62 @@
 #include<iostream>
+#include<list>
 
 using namespace std;
+void printList(list<int> input);
 
-struct Node
+void insertionSort(list<int>& input)
 {
-	int data;
-	struct Node* next;
-	struct Node* prev;
-};
-
-void sortedInsert(struct Node**, struct Node*);
-
-void insertionSort(struct Node** head_ref)
-{
-	struct Node* sorted = NULL;
-
-	struct Node* current = *head_ref;
-	while (current != NULL)
+	cout << "Starting Sort: " << endl;
+	list<int>::iterator up;
+	list<int>::iterator down, current;
+	
+	for (up = input.begin(); up != input.end(); up++)
 	{
-		struct Node* next = current->next;
+		int key = *up; 
 
-		sortedInsert(&sorted, current);
-		current = next;
-	}
-
-	*head_ref = sorted;
-}
-
-void sortedInsert(struct Node** head_ref, struct Node* new_node)
-{
-	struct Node* current;
-
-	if (*head_ref == NULL || (*head_ref)->data >= new_node->data)
-	{
-		new_node->next = *head_ref;
-		*head_ref = new_node;
-	}
-	else
-	{
-		current = *head_ref;
-		while (current->next != NULL && current->next->data < new_node->data)
+		for(current = input.begin(); current != input.end();current ++)
 		{
-			current = current->next;
+			if (*current < key)
+			{
+				down = up;
+				while (down != input.begin() && *down < *current)
+				{
+					down--;
+				}
+				int temp = *down;
+				*down = *current;
+				*current = temp;
+			}
 		}
-		new_node->next = current->next;
-		current->next = new_node;
 	}
 
 }
 
-void printList(struct Node* head) 
+void printList(list<int> input) 
 {
-	struct Node* temp = head;
-	while (temp != NULL)
+	cout << "The list has a size of: " << input.size() << endl;
+
+	list<int>::iterator print;
+	for (print = input.begin(); print != input.end(); print++)
 	{
-		cout << " " << temp->data << endl;
-		temp = temp->next;
+		cout << "The current node is: " << *print << endl;
+
 	}
-
-
-}
-
-void push(struct Node** head_ref, int new_data)
-{
-	struct Node* new_node = new Node;
-
-	new_node->data = new_data;
-	new_node->next = (*head_ref);
-
-	(*head_ref) = new_node;
-
 }
 
 int main()
 {
-	struct Node* head = NULL;
+	list<int> input;
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 100; i++)
 	{
-		push(&head, rand() % 10);
+		input.push_back(rand()%100);
 	}
 	cout << "the list is: " << endl; 
-	printList(head);
+	printList(input);
 
-	insertionSort(&head);
+	insertionSort(input);
+
 	cout << "The list after sorting is: " << endl;
-	printList(head);
+	printList(input);
 }
