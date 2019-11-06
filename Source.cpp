@@ -35,9 +35,18 @@ public:
 		result = "";
 		for (int i = 0; i < input.size(); i++)
 		{
-			char temp = input[i];
-			temp = tolower(temp);
-			result += searchMap(temp);
+			if (valid_input(input[i]) || input[i] == ' ')
+			{
+				char temp = input[i];
+				temp = tolower(temp);
+				result += searchMap(temp);
+			}
+			else
+			{
+				cout << "Invalid input: " << endl;
+				result = "";
+				break;
+			}
 
 
 		}
@@ -47,7 +56,12 @@ public:
 	string decode(string input)
 	{
 		result = "";
-		traverse_tree(root, input, 0);
+		if (valid_decode(input))
+		{
+			traverse_tree(root, input, 0);
+		}
+		else 
+			cout << "Invalid input: " << endl;
 		return result;
 	}
 	void printKeyTree()
@@ -59,7 +73,18 @@ private:
 	map<char, string> key;
 	node* root;
 	string result;
-
+	bool valid_decode(string input)
+	{
+		bool isValid = true;
+		for (int i = 0; i < input.size(); i++)
+		{
+			if (input[i] != '.' && input[i] != '_' && input[i] != ' ')
+			{
+				isValid = false;
+			}
+			return isValid;
+		}
+	}
 	char traverse_tree(node* Node, string input, int i)
 	{
 		if (i == input.size())
@@ -83,6 +108,11 @@ private:
 			traverse_tree(Node->right, input, i + 1);
 		}
 
+		if (input[i] != ' ' && i != input.size() && Node->left == NULL && Node->right == NULL)
+		{
+			cout << "Invalid input" << endl;
+			result = "";
+		}
 		return ' ';
 	}
 	void setroot()
@@ -109,12 +139,8 @@ private:
 	{
 		map<char, string>::iterator itr;
 
-		if (valid_input(input))
-		{
-			return key.at(input) + " ";
-		}
-		else
-			return "";
+		return key.at(input) + " ";
+
 
 	}
 
@@ -172,6 +198,7 @@ private:
 			}
 
 			keyFile.close();
+			key.insert(pair<char, string>(' ', ""));
 
 		}
 
@@ -231,38 +258,60 @@ int main()
 
 	do
 	{
-		cout << "Please provide the input: ";
-		getline(cin, input);
-		cout << endl;	
+		input = "";
+		do
+		{
+			cout << "Please provide the input: ";
+			getline(cin, input);
+			cout << endl;
+			system("CLS");
+		} while (input.size() == 0);
 
-		cout << "Would you like to encode or decode the input? (e/d) ";
-		cin >> Select;
-		cout << endl;
-		Select = tolower(Select);
+		do
+		{
+			cout << "Would you like to encode or decode the input? (e/d) ";
+			cin >> Select;
+			cout << endl;
+			Select = tolower(Select);
 
+			if (Select != 'd' && Select != 'e')
+			{
+				cout << "Error unrecognized mode. Please try again: " << endl;
+			}
+
+			system("CLS");
+
+		} while (Select != 'd' && Select != 'e');
+
+		string temp;
 		if (Select == 'd')
 		{
-			cout << "The result is: " << endl << example.decode(input) << endl;
+			temp = example.decode(input);
+					if (temp.size() != 0)
+					{
+						cout << "The result is: " << temp << endl;
+					}
 		}
 		else if (Select == 'e')
 		{
-			cout << "The result is: " << endl << example.encode(input) << endl;
+			temp = example.encode(input);
+			if (temp.size() != 0)
+			{
+				cout << "The result is: " << temp << endl;
+			}
 		}
-		else
-			cout << "error unrecognized mode: " << endl;
 
-		cout << " (y/n)";
+		cout << endl;
+
+		cout << "if you would like to stop press n: ";
 		cin >> Continue;
 		cout << endl;
 
 		Continue = tolower(Continue);
 
-		if (Continue != 'y' || Continue != 'n')
-		{
-			cout << "Unrecognized input:"
-		}
+		system("CLS");
+	} while (Continue != 'n');
 
-	} while (Continue == 'y');
-	system("pause");
+
 	return 0;
 }
