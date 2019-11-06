@@ -277,6 +277,7 @@ int main()
 			if (Select != 'd' && Select != 'e')
 			{
 				cout << "Error unrecognized mode. Please try again: " << endl;
+				system("pause");
 			}
 
 			system("CLS");
