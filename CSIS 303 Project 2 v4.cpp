@@ -81,9 +81,10 @@ private:
 			if (input[i] != '.' && input[i] != '_' && input[i] != ' ')
 			{
 				isValid = false;
+				break;
 			}
-			return isValid;
-		}
+		}		
+		return isValid;
 	}
 	char traverse_tree(node* Node, string input, int i)
 	{
